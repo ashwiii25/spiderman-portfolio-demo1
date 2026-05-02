@@ -7,6 +7,7 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 import { SoundProvider } from "@/components/providers/SoundProvider";
 import HeroSection from "@/sections/HeroSection";
+import ScrollSequenceSection from "@/sections/ScrollSequenceSection";
 import AboutSection from "@/sections/AboutSection";
 import ProjectsSection from "@/sections/ProjectsSection";
 import ClientsSection from "@/sections/ClientsSection";
@@ -26,6 +27,7 @@ export default function Home() {
               <CustomCursor />
               <Navigation />
               
+              <ScrollSequenceSection />
               <HeroSection />
               
               <div id="about">

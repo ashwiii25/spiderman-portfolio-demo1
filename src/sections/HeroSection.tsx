@@ -20,32 +20,17 @@ export default function HeroSection() {
       ref={containerRef} 
       className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-spider-black"
     >
-      {/* Background Layer: Sky & distant buildings */}
-      <motion.div 
-        style={{ y: cityY }}
-        className="absolute inset-0 z-0 opacity-40"
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-spider-purple/20 to-spider-black" />
-        <svg className="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none">
-          {/* Simple skyscraper silhouettes */}
-          <rect x="100" y="600" width="100" height="400" fill="#0A0A0A" />
-          <rect x="250" y="500" width="120" height="500" fill="#0F0F0F" />
-          <rect x="450" y="700" width="80" height="300" fill="#0A0A0A" />
-          <rect x="600" y="400" width="150" height="600" fill="#151515" />
-          <rect x="800" y="650" width="100" height="350" fill="#0A0A0A" />
-        </svg>
-      </motion.div>
+      {/* Background Layer: Sequence Last Frame */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/hero_images/ezgif-623403e6f3adb24d-png-split/ezgif-frame-168.png" 
+          alt="Hero Background" 
+          className="w-full h-full object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-spider-black/60 via-transparent to-spider-black" />
+        <div className="absolute inset-0 halftone opacity-20" />
+      </div>
 
-      {/* Mid Layer: More buildings */}
-      <motion.div 
-        style={{ y: midY }}
-        className="absolute inset-0 z-10"
-      >
-        <svg className="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none">
-          <path d="M0,1000 L0,800 L100,750 L200,850 L300,700 L400,800 L500,650 L600,750 L700,600 L800,700 L900,550 L1000,650 L1000,1000 Z" fill="#050505" />
-          <div className="absolute top-[60%] left-[10%] w-[20%] h-[10%] border-t border-spider-blue/20 blur-sm" />
-        </svg>
-      </motion.div>
 
       {/* Foreground Text Layer */}
       <motion.div 
