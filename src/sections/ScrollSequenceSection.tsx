@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
 const TOTAL_FRAMES = 168;
-const WORDS = ["THWIP!", "SENSATIONAL!", "AMAZING!", "SPECTACULAR!", "WEB-HEAD", "SPIDER-SENSE", "WALL-CRAWLER", "BEYOND", "MULTIVERSE", "RESPONSIBILITY"];
+const WORDS = ["CODE!", "DESIGN!", "BUILD!", "DEPLOY!"];
 
 export default function ScrollSequenceSection() {
   const containerRef = useRef<HTMLDivElement>(null);
