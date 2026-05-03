@@ -21,7 +21,7 @@ export default function ScrollSequenceSection() {
   // Frame path helper
   const getFramePath = (index: number) => {
     const frameNumber = index.toString().padStart(3, "0");
-    return `/hero_images/ezgif-623403e6f3adb24d-png-split/ezgif-frame-${frameNumber}.png`;
+    return `/pixluca-images/ezgif-frame-${frameNumber}.webp`;
   };
 
   useEffect(() => {

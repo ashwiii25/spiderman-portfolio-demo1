@@ -23,7 +23,7 @@ export default function HeroSection() {
       {/* Background Layer: Sequence Last Frame */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/hero_images/ezgif-623403e6f3adb24d-png-split/ezgif-frame-168.png" 
+          src="/pixluca-images/ezgif-frame-168.webp" 
           alt="Hero Background" 
           className="w-full h-full object-cover opacity-60"
         />
