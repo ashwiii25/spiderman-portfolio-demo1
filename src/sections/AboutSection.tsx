@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import GlitchTitle from "@/components/ui/GlitchTitle";
 
 export default function AboutSection() {
   return (
@@ -8,14 +9,18 @@ export default function AboutSection() {
       <div className="absolute inset-0 halftone opacity-10 pointer-events-none" />
       
       <div className="max-w-6xl mx-auto">
-        <motion.h2 
+        <motion.div 
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="font-bangers text-5xl md:text-7xl text-spider-red mb-16 inline-block bg-white text-black px-6 py-2 -rotate-2"
+          className="mb-16 inline-block -rotate-2"
         >
-          WHO AM I?
-        </motion.h2>
+          <GlitchTitle 
+            text="WHO AM I?" 
+            className="text-5xl md:text-7xl drop-shadow-[0_0_15px_rgba(255,0,60,0.5)]" 
+            colorClass="text-spider-red"
+          />
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Panel 1 */}

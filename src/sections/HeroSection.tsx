@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import GlitchTitle from "@/components/ui/GlitchTitle";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -40,15 +41,19 @@ export default function HeroSection() {
           <span className="block font-bebas text-spider-blue text-xl md:text-2xl tracking-[0.3em] mb-4">
             FULL STACK DEVELOPER
           </span>
-          <h1 className="font-bangers text-7xl md:text-9xl lg:text-[12rem] leading-none mb-6 group">
-            <span className="relative inline-block hover:skew-x-12 transition-transform duration-300">
-              M
-              <span className="absolute inset-0 text-spider-red -translate-x-1 translate-y-1 -z-10 opacity-50 group-hover:translate-x-2 group-hover:-translate-y-2 transition-all">M</span>
-              <span className="absolute inset-0 text-spider-blue translate-x-1 -translate-y-1 -z-10 opacity-50 group-hover:-translate-x-2 group-hover:translate-y-2 transition-all">M</span>
-            </span>
-            ILES <br /> 
-            <span className="text-spider-red">MORALES</span>
-          </h1>
+          <div className="mb-6 flex flex-col items-center">
+            <GlitchTitle 
+              text="MILES" 
+              as="h1" 
+              className="text-7xl md:text-9xl lg:text-[12rem] leading-none" 
+            />
+            <GlitchTitle 
+              text="MORALES" 
+              as="h1" 
+              className="text-7xl md:text-9xl lg:text-[12rem] leading-none" 
+              colorClass="text-spider-red"
+            />
+          </div>
         </motion.div>
 
         <motion.div

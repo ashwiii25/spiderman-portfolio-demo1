@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import GlitchTitle from "@/components/ui/GlitchTitle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,9 +67,11 @@ export default function ProjectsSection() {
   return (
     <section ref={sectionRef} className="relative z-10 h-screen bg-spider-black overflow-hidden">
       <div className="absolute top-10 left-10 z-50">
-        <h2 className="font-bangers text-6xl md:text-8xl text-white outline-text">
-          PROJECTS
-        </h2>
+        <GlitchTitle 
+          text="PROJECTS" 
+          className="text-6xl md:text-8xl" 
+          colorClass="text-white"
+        />
       </div>
 
       <div 
