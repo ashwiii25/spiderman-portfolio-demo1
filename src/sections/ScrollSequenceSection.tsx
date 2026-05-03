@@ -16,7 +16,7 @@ export default function ScrollSequenceSection() {
   const [images, setImages] = useState<HTMLImageElement[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [activeWord, setActiveWord] = useState<{ text: string, x: number, y: number, rotation: number } | null>(null);
+  const [activeWordIndex, setActiveWordIndex] = useState<number | null>(null);
 
   // Frame path helper
   const getFramePath = (index: number) => {
@@ -98,16 +98,15 @@ export default function ScrollSequenceSection() {
         end: "bottom bottom",
         scrub: true,
         onUpdate: (self) => {
-          // Trigger random words
-          if (self.progress > 0.1 && self.progress < 0.9 && Math.random() < 0.05 && !activeWord) {
-            setActiveWord({
-              text: WORDS[Math.floor(Math.random() * WORDS.length)],
-              x: 50,
-              y: 50,
-              rotation: 0
-            });
-            setTimeout(() => setActiveWord(null), 2000);
-          }
+          const p = self.progress;
+          let newIndex = null;
+          
+          if (p >= 0.1 && p < 0.25) newIndex = 0;
+          else if (p >= 0.3 && p < 0.45) newIndex = 1;
+          else if (p >= 0.5 && p < 0.65) newIndex = 2;
+          else if (p >= 0.7 && p < 0.85) newIndex = 3;
+
+          setActiveWordIndex(newIndex);
         }
       }
     });
@@ -142,17 +141,31 @@ export default function ScrollSequenceSection() {
       <div className="sticky top-0 w-full h-screen pointer-events-none z-10 overflow-hidden">
         {/* Comic Text Overlay */}
         <AnimatePresence>
-          {activeWord && (
+          {activeWordIndex !== null && (
             <motion.div
+              key={activeWordIndex}
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 0.4, y: 0 }}
+              animate={{ scale: 1, opacity: 0.5, y: 0 }}
               exit={{ scale: 1.1, opacity: 0, y: -20, filter: "blur(10px)" }}
-              transition={{ duration: 2, ease: "easeInOut" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               className="absolute z-20 pointer-events-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center"
             >
-              <h2 className="font-bangers font-bold text-[8rem] md:text-[15rem] leading-none text-spider-yellow drop-shadow-[0_0_30px_rgba(255,213,0,0.5)] italic select-none text-center">
-                {activeWord.text}
-              </h2>
+              <div className="relative inline-block">
+                {/* Main Text */}
+                <h2 className="font-bangers font-bold text-[8rem] md:text-[15rem] leading-none text-spider-yellow drop-shadow-[0_0_30px_rgba(255,213,0,0.5)] italic select-none text-center relative z-10">
+                  {WORDS[activeWordIndex]}
+                </h2>
+                
+                {/* Glitch Overlay 1 (Cyan) */}
+                <h2 className="font-bangers font-bold text-[8rem] md:text-[15rem] leading-none text-spider-blue absolute top-0 left-0 w-full opacity-70 italic select-none text-center animate-glitch-1 mix-blend-screen pointer-events-none -ml-2 z-20">
+                  {WORDS[activeWordIndex]}
+                </h2>
+                
+                {/* Glitch Overlay 2 (Red) */}
+                <h2 className="font-bangers font-bold text-[8rem] md:text-[15rem] leading-none text-spider-red absolute top-0 left-0 w-full opacity-70 italic select-none text-center animate-glitch-2 mix-blend-screen pointer-events-none ml-2 z-20">
+                  {WORDS[activeWordIndex]}
+                </h2>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
