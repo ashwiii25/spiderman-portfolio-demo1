@@ -45,7 +45,7 @@ export default function Home() {
               </div>
 
               {/* Footer */}
-              <footer className="py-12 px-4 text-center border-t border-white/5">
+              <footer className="relative z-10 bg-spider-black py-12 px-4 text-center border-t border-white/5">
                 <p className="font-bebas text-xl text-gray-500">
                   DESIGNED & DEVELOPED BY <span className="text-spider-red">MILES MORALES</span>
                 </p>

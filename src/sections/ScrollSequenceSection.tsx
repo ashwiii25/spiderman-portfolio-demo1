@@ -129,7 +129,7 @@ export default function ScrollSequenceSection() {
 
   return (
     <section ref={containerRef} className="relative w-full h-[400vh]">
-      <div className="fixed top-0 left-0 w-full h-screen z-[-1] bg-spider-black pointer-events-none">
+      <div className="fixed top-0 left-0 w-full h-screen z-0 bg-spider-black pointer-events-none">
         <canvas
           ref={canvasRef}
           className="absolute inset-0 z-0 w-full h-full object-cover"
