@@ -12,7 +12,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-24 bg-spider-black overflow-hidden">
+    <section id="contact" className="relative z-10 py-24 bg-spider-black overflow-hidden">
       {/* Web Strands Background (Simple CSS implementation) */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         {[...Array(5)].map((_, i) => (

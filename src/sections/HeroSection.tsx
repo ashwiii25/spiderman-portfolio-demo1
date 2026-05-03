@@ -18,16 +18,11 @@ export default function HeroSection() {
   return (
     <section 
       ref={containerRef} 
-      className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-spider-black"
+      className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-transparent"
     >
-      {/* Background Layer: Sequence Last Frame */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="/pixluca-images/ezgif-frame-168.webp" 
-          alt="Hero Background" 
-          className="w-full h-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-spider-black/60 via-transparent to-spider-black" />
+      {/* Background Layer: Overlays over the fixed canvas */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-spider-black/20 via-transparent to-spider-black" />
         <div className="absolute inset-0 halftone opacity-20" />
       </div>
 

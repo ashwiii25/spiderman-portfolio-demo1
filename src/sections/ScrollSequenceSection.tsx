@@ -95,9 +95,8 @@ export default function ScrollSequenceSection() {
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top top",
-        end: "+=300%",
-        pin: true,
-        scrub: 0.5,
+        end: "bottom bottom",
+        scrub: true,
         onUpdate: (self) => {
           // Trigger random words
           if (self.progress > 0.1 && self.progress < 0.9 && Math.random() < 0.05 && !activeWord) {
@@ -129,68 +128,72 @@ export default function ScrollSequenceSection() {
   }, [isLoading, images]);
 
   return (
-    <section ref={containerRef} className="relative w-full h-screen bg-spider-black overflow-hidden">
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 z-0 w-full h-full object-cover"
-      />
-      
-      {/* Cinematic Vignette */}
-      <div className="absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(circle,transparent_40%,rgba(0,0,0,0.8)_100%)]" />
+    <section ref={containerRef} className="relative w-full h-[400vh]">
+      <div className="fixed top-0 left-0 w-full h-screen z-[-1] bg-spider-black pointer-events-none">
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 z-0 w-full h-full object-cover"
+        />
+        
+        {/* Cinematic Vignette */}
+        <div className="absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(circle,transparent_40%,rgba(0,0,0,0.8)_100%)]" />
+      </div>
 
-      {/* Comic Text Overlay */}
-      <AnimatePresence>
-        {activeWord && (
-          <motion.div
-            initial={{ scale: 0, opacity: 0, rotate: activeWord.rotation - 10 }}
-            animate={{ scale: 1, opacity: 1, rotate: activeWord.rotation }}
-            exit={{ scale: 1.5, opacity: 0, filter: "blur(10px)" }}
-            className="absolute z-20 pointer-events-none"
-            style={{ left: `${activeWord.x}%`, top: `${activeWord.y}%` }}
-          >
-            <h2 className="font-bangers text-6xl md:text-8xl text-spider-yellow drop-shadow-[0_0_15px_rgba(255,213,0,0.5)] italic select-none">
-              {activeWord.text}
-            </h2>
-          </motion.div>
+      <div className="sticky top-0 w-full h-screen pointer-events-none z-10 overflow-hidden">
+        {/* Comic Text Overlay */}
+        <AnimatePresence>
+          {activeWord && (
+            <motion.div
+              initial={{ scale: 0, opacity: 0, rotate: activeWord.rotation - 10 }}
+              animate={{ scale: 1, opacity: 1, rotate: activeWord.rotation }}
+              exit={{ scale: 1.5, opacity: 0, filter: "blur(10px)" }}
+              className="absolute z-20 pointer-events-none"
+              style={{ left: `${activeWord.x}%`, top: `${activeWord.y}%` }}
+            >
+              <h2 className="font-bangers text-6xl md:text-8xl text-spider-yellow drop-shadow-[0_0_15px_rgba(255,213,0,0.5)] italic select-none">
+                {activeWord.text}
+              </h2>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Loading Progress */}
+        {isLoading && (
+          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-spider-black">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-spider-red font-bebas text-4xl mb-4 tracking-widest"
+            >
+              SYNCING MULTIVERSE... {progress}%
+            </motion.div>
+            <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden">
+              <motion.div 
+                className="h-full bg-spider-red"
+                initial={{ width: 0 }}
+                animate={{ width: `${progress}%` }}
+              />
+            </div>
+          </div>
         )}
-      </AnimatePresence>
 
-      {/* Loading Progress */}
-      {isLoading && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-spider-black">
+        {/* Subtle Scroll Indication */}
+        {!isLoading && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-spider-red font-bebas text-4xl mb-4 tracking-widest"
+            transition={{ delay: 1, duration: 1 }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center"
           >
-            SYNCING MULTIVERSE... {progress}%
-          </motion.div>
-          <div className="w-64 h-1 bg-white/10 rounded-full overflow-hidden">
+            <span className="font-bebas text-white/40 text-sm tracking-[0.3em] mb-2">SCROLL TO EXPLORE</span>
             <motion.div 
-              className="h-full bg-spider-red"
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="w-px h-12 bg-gradient-to-b from-spider-red to-transparent"
             />
-          </div>
-        </div>
-      )}
-
-      {/* Subtle Scroll Indication */}
-      {!isLoading && (
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center"
-        >
-          <span className="font-bebas text-white/40 text-sm tracking-[0.3em] mb-2">SCROLL TO EXPLORE</span>
-          <motion.div 
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-px h-12 bg-gradient-to-b from-spider-red to-transparent"
-          />
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </div>
     </section>
   );
 }

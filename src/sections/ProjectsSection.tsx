@@ -64,7 +64,7 @@ export default function ProjectsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-screen bg-spider-black overflow-hidden">
+    <section ref={sectionRef} className="relative z-10 h-screen bg-spider-black overflow-hidden">
       <div className="absolute top-10 left-10 z-50">
         <h2 className="font-bangers text-6xl md:text-8xl text-white outline-text">
           PROJECTS

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-24 px-4 bg-spider-black overflow-hidden">
+    <section id="about" className="relative z-10 py-24 px-4 bg-spider-black overflow-hidden">
       <div className="absolute inset-0 halftone opacity-10 pointer-events-none" />
       
       <div className="max-w-6xl mx-auto">

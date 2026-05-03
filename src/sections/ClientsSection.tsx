@@ -8,7 +8,7 @@ const CLIENTS = [
 
 export default function ClientsSection() {
   return (
-    <section className="relative py-24 bg-spider-black overflow-hidden border-y border-white/5">
+    <section className="relative z-10 py-24 bg-spider-black overflow-hidden border-y border-white/5">
       <div className="absolute inset-0 halftone-red opacity-5 pointer-events-none" />
       
       {/* Spider Society Tech Grid Background */}
