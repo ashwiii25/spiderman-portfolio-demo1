@@ -102,11 +102,11 @@ export default function ScrollSequenceSection() {
           if (self.progress > 0.1 && self.progress < 0.9 && Math.random() < 0.05 && !activeWord) {
             setActiveWord({
               text: WORDS[Math.floor(Math.random() * WORDS.length)],
-              x: 20 + Math.random() * 60, // 20% to 80%
-              y: 20 + Math.random() * 60,
-              rotation: -20 + Math.random() * 40
+              x: 50,
+              y: 50,
+              rotation: 0
             });
-            setTimeout(() => setActiveWord(null), 1000);
+            setTimeout(() => setActiveWord(null), 2000);
           }
         }
       }
@@ -144,13 +144,13 @@ export default function ScrollSequenceSection() {
         <AnimatePresence>
           {activeWord && (
             <motion.div
-              initial={{ scale: 0, opacity: 0, rotate: activeWord.rotation - 10 }}
-              animate={{ scale: 1, opacity: 1, rotate: activeWord.rotation }}
-              exit={{ scale: 1.5, opacity: 0, filter: "blur(10px)" }}
-              className="absolute z-20 pointer-events-none"
-              style={{ left: `${activeWord.x}%`, top: `${activeWord.y}%` }}
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 0.4, y: 0 }}
+              exit={{ scale: 1.1, opacity: 0, y: -20, filter: "blur(10px)" }}
+              transition={{ duration: 2, ease: "easeInOut" }}
+              className="absolute z-20 pointer-events-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center"
             >
-              <h2 className="font-bangers text-6xl md:text-8xl text-spider-yellow drop-shadow-[0_0_15px_rgba(255,213,0,0.5)] italic select-none">
+              <h2 className="font-bangers font-bold text-[8rem] md:text-[15rem] leading-none text-spider-yellow drop-shadow-[0_0_30px_rgba(255,213,0,0.5)] italic select-none text-center">
                 {activeWord.text}
               </h2>
             </motion.div>
